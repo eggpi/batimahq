@@ -23,7 +23,17 @@
                 $("#batimahq").append(page);
             }
 
-            $("#batimahq").turn();
+            $("#batimahq").turn({
+                when: {
+                    turn: function() {
+                        // starts at 1 so the greeter stands above
+                        // the magazine and its links are clickable.
+                        // becomes 0 while turning so pages stand
+                        // above the greeter.
+                        $("#greeter").css("z-index", 0);
+                    }
+                }
+            });
         }
 
         function onBlogPostFetch(root) {

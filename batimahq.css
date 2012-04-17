@@ -33,6 +33,7 @@ body {
     font-family: "Mate SC", serif;
     border: 2px solid black;
     background-color: white;
+    z-index: 1;
 }
 
 #greeter h2 {
