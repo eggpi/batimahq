@@ -21,19 +21,21 @@ body {
     height: 960px;
     width: 1265px;
     border: 2px solid black;
+    background-color: gray;
+}
+
+#greeter-wrapper {
+    background-color: gray;
 }
 
 #greeter {
-    position: absolute;
-    margin: 30px;
     padding: 15px;
+    margin: 30px;
     height: 870px;
-    width: 545px;
     text-align: justify;
     font-family: "Mate SC", serif;
     border: 2px solid black;
     background-color: white;
-    z-index: 1;
 }
 
 #greeter h2 {

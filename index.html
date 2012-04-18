@@ -23,17 +23,12 @@
                 $("#batimahq").append(page);
             }
 
-            $("#batimahq").turn({
-                when: {
-                    turn: function() {
-                        // starts at 1 so the greeter stands above
-                        // the magazine and its links are clickable.
-                        // becomes 0 while turning so pages stand
-                        // above the greeter.
-                        $("#greeter").css("z-index", 0);
-                    }
-                }
-            });
+            $("#batimahq").turn({"page":2}).bind("start",
+                            function(e, page) {
+                                if (page.next === 1) {
+                                    e.preventDefault();
+                                }
+                            });
         }
 
         function onBlogPostFetch(root) {
@@ -67,22 +62,23 @@
 </head>
 <body>
     <noscript>Rápido Róbin, ative o Javascript no navegador!</noscript>
-    <div id="wrapper">
-        <div id="greeter">
-            <h1>Putaquepariu, uma HQ do Bátima!</h1>
+        <div id="batimahq">
+            <div id="dummy-first-page"></div>
+            <div id="greeter-wrapper">
+                <div id="greeter">
+                    <h1>Putaquepariu, uma HQ do Bátima!</h1>
 
-            <h2>É simples, comissário:</h2>
-            <p>Talentosos artistas se reuniram para adaptar a famosa redublagem <a href="http://www.youtube.com/watch?v=mYXXl7Hu6v4">Feira da Fruta</a> para quadrinhos.</p>
-            <p>Embora os resultados estejam ficando muito bons, acredito que poderiam ser melhor divulgados: no momento, a HQ está sendo colocada página por página no blog <a href="http://batimahq.blogspot.com.br/">BátimaHQ</a>, o que dificulta um pouco a leitura.</p>
-            <p>Por isso resolvi criar esta página. Tudo o que ela faz é, quando aberta, construir uma HQ virtual (a Globo já registrou "revista eletrônica") a partir das páginas postadas até o momento no blog dos artistas. Acredito que isso facilite bastante a leitura.</p>
-            <p>Só para deixar claro: não participei de forma alguma na criação da HQ. Apenas tentei tornar sua leitura mais agradável, e se você chegou até aqui, recomendo que visite também o blog onde a arte original é postada.</p>
-            <p>É só começar a ler ao lado, e pra virar as páginas basta clicar em um dos cantos!</p>
+                    <h2>É simples, comissário:</h2>
+                    <p>Talentosos artistas se reuniram para adaptar a famosa redublagem <a href="http://www.youtube.com/watch?v=mYXXl7Hu6v4">Feira da Fruta</a> para quadrinhos.</p>
+                    <p>Embora os resultados estejam ficando muito bons, acredito que poderiam ser melhor divulgados: no momento, a HQ está sendo colocada página por página no blog <a href="http://batimahq.blogspot.com.br/">BátimaHQ</a>, o que dificulta um pouco a leitura.</p>
+                    <p>Por isso resolvi criar esta página. Tudo o que ela faz é, quando aberta, construir uma HQ virtual (a Globo já registrou "revista eletrônica") a partir das páginas postadas até o momento no blog dos artistas. Acredito que isso facilite bastante a leitura.</p>
+                    <p>Só para deixar claro: não participei de forma alguma na criação da HQ. Apenas tentei tornar sua leitura mais agradável, e se você chegou até aqui, recomendo que visite também o blog onde a arte original é postada.</p>
+                    <p>É só começar a ler ao lado, e pra virar as páginas basta clicar em um dos cantos!</p>
 
-            <h2>Putaque... ma como?!</h2>
-            <p>Caso você esteja se perguntando, esta página funciona assim: as páginas da HQ são extraídas direto do blog usando a API do Google para o Blogger, e a revista em si é montada usando <a href="http://turnjs.com">turn.js</a>, um plugin para JQuery.</p>
+                    <h2>Putaque... ma como?!</h2>
+                    <p>Caso você esteja se perguntando, esta página funciona assim: as páginas da HQ são extraídas direto do blog usando a API do Google para o Blogger, e a revista em si é montada usando <a href="http://turnjs.com">turn.js</a>, um plugin para JQuery.</p>
+                </div>
+            </div>
         </div>
-
-        <div id="batimahq"></div>
-    </div>
 </body>
 </html>
