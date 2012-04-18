@@ -41,3 +41,7 @@ body {
 #greeter p {
     text-align: justify;
 }
+
+#instructions {
+    display: none;
+}
