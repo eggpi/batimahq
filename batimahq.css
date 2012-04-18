@@ -8,11 +8,6 @@ body {
     background-color: black;
 }
 
-#wrapper {
-    background-color: gray;
-    width: 1265px;
-}
-
 #batimahq {
     /* images are 1054x1600 px
      * Double width to fit two pages in an open magazine,
