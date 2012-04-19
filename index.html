@@ -20,6 +20,8 @@
         function buildMagazine(images) {
             for (var i = 0; i < images.length; i++) {
                 var page = $("<img />").attr("src", images[i]);
+
+                page.addClass(i % 2 ? "left" : "right");
                 $("#batimahq").append(page);
             }
 
@@ -28,8 +30,21 @@
                                 if (page.next === 1) {
                                     e.preventDefault();
                                 }
+                            }).bind("click",
+                            function(e) {
+                                var magazine = $("#batimahq");
+                                var page = magazine.turn("page");
 
+                                if (magazine.turn("animating")) {
+                                    // user clicked in a corner
+                                    return;
+                                } else if ($(e.target).hasClass("right")) {
+                                    magazine.turn("next");
+                                } else if ($(e.target).hasClass("left")) {
+                                    magazine.turn("previous");
+                                }
                             });
+
             $(".p2").off("pressed");
         }
 
@@ -80,7 +95,7 @@
 
                 <div id="instructions">
                     <h2>É simples, comissário:</h2>
-                    <p>É só começar a ler ao lado, e pra virar as páginas basta clicar ou arrastar um dos cantos!</p>
+                    <p>É só começar a ler ao lado, e pra virar as páginas basta clicar nelas ou arrastar um de seus cantos!</p>
                 </div>
 
                 <h2>Comé que pode ser verdade uma porra dessa?</h2>
