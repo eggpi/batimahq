@@ -8,16 +8,21 @@ body {
     background-color: black;
 }
 
+#batimahq-wrapper {
+    height: 960px;
+    width: 1265px;
+    position: relative;
+    margin: auto auto;
+}
+
 #batimahq {
     /* images are 1054x1600 px
      * Double width to fit two pages in an open magazine,
      * and scale down to 60% of the original size.
      */
-    height: 960px;
-    width: 1265px;
+    height: 100%;
+    width: 100%;
     background-color: gray;
-    position: relative;
-    margin: auto auto;
 }
 
 #greeter-wrapper {
@@ -47,10 +52,10 @@ body {
 }
 
 #bookmark {
-    height: 200px;
+    height: 165px;
     z-index: 99;
     position: absolute;
-    left: 10px;
-    top: 12px;
+    left: -10px;
+    top: -7px;
     display: none;
 }
