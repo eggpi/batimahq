@@ -25,7 +25,20 @@
                 $("#batimahq").append(page);
             }
 
-            $("#batimahq").turn({"page":2}).bind("start",
+            if (window.localStorage) {
+                page = localStorage.getItem("batimahq-bookmark");
+
+                $("#bookmark").show().click(function() {
+                    var bookmark = $("#batimahq").turn("page");
+                    localStorage.setItem("batimahq-bookmark", bookmark);
+                });
+            }
+
+            if (!page || page < 2) {
+                page = 2;
+            }
+
+            $("#batimahq").turn({"page":page}).bind("start",
                             function(e, page) {
                                 if (page.next === 1) {
                                     e.preventDefault();
@@ -78,6 +91,7 @@
     </script>
 </head>
 <body>
+    <img id="bookmark" src="bookmark.png"/>
     <div id="batimahq">
         <div id="dummy-first-page"></div>
         <div id="greeter-wrapper">
