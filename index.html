@@ -17,7 +17,7 @@
             return title.toLocaleLowerCase().search("página") >= 0;
         }
 
-        function buildMagazine(images) {
+        function buildMagazine(images, initialPage) {
             for (var i = 0; i < images.length; i++) {
                 var page = $("<img />").attr("src", images[i]);
 
@@ -25,20 +25,30 @@
                 $("#batimahq").append(page);
             }
 
+            var initialPage = 2;
+            var bookmarkedPage = null;
             if (window.localStorage) {
-                page = localStorage.getItem("batimahq-bookmark");
-
                 $("#bookmark").show().click(function() {
-                    var bookmark = $("#batimahq").turn("page");
-                    localStorage.setItem("batimahq-bookmark", bookmark);
+                    bookmarkedPage = $("#batimahq").turn("page");
+                    localStorage.setItem("batimahq-bookmark", bookmarkedPage);
+
+                    $(this).removeClass("on-regular-page")
+                           .addClass("on-bookmarked-page");
                 });
+
+                bookmarkedPage = localStorage.getItem("batimahq-bookmark");
+                bookmarkedPage = parseInt(bookmarkedPage, 10);
+
+                if (bookmarkedPage && bookmarkedPage >= 2) {
+                    initialPage = bookmarkedPage;
+                    $("#bookmark").addClass("on-bookmarked-page");
+                } else {
+                    bookmarkedPage = null;
+                    localStorage.removeItem("batimahq-bookmark");
+                }
             }
 
-            if (!page || page < 2) {
-                page = 2;
-            }
-
-            $("#batimahq").turn({"page":page}).bind("start",
+            $("#batimahq").turn({"page": initialPage}).bind("start",
                             function(e, page) {
                                 if (page.next === 1) {
                                     e.preventDefault();
@@ -56,6 +66,15 @@
                                 } else if ($(e.target).hasClass("left")) {
                                     magazine.turn("previous");
                                 }
+                            }).bind("turning",
+                                function(e, page, view) {
+                                    if (view.indexOf(bookmarkedPage) != -1) {
+                                        $("#bookmark").removeClass("on-regular-page")
+                                                      .addClass("on-bookmarked-page");
+                                    } else {
+                                        $("#bookmark").removeClass("on-bookmarked-page")
+                                                      .addClass("on-regular-page");
+                                    }
                             });
 
             $(".p2").off("pressed");

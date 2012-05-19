@@ -52,10 +52,29 @@ body {
 }
 
 #bookmark {
-    height: 165px;
+    height: 130px;
+    width: 43px;
     z-index: 99;
     position: absolute;
     left: -10px;
     top: -7px;
     display: none;
+}
+
+#bookmark.on-bookmarked-page {
+    -moz-transition: height 200ms;
+    -o-transition: height 200ms;
+    -webkit-transition: height 200ms;
+    -ms-transition: height 200ms;
+    height: 160px;
+    width: 43px;
+}
+
+#bookmark.on-regular-page {
+    -moz-transition: height 200ms;
+    -o-transition: height 200ms;
+    -webkit-transition: height 200ms;
+    -ms-transition: height 200ms;
+    height: 130px;
+    width: 43px;
 }
