@@ -29,11 +29,19 @@
             var bookmarkedPage = null;
             if (window.localStorage) {
                 $("#bookmark").show().click(function() {
-                    bookmarkedPage = $("#batimahq").turn("page");
-                    localStorage.setItem("batimahq-bookmark", bookmarkedPage);
+                    if ($(this).hasClass("on-bookmarked-page")) {
+                        bookmarkedPage = null;
+                        localStorage.removeItem("batimahq-bookmark");
 
-                    $(this).removeClass("on-regular-page")
-                           .addClass("on-bookmarked-page");
+                        $(this).removeClass("on-bookmarked-page")
+                               .addClass("on-regular-page");
+                    } else {
+                        bookmarkedPage = $("#batimahq").turn("page");
+                        localStorage.setItem("batimahq-bookmark", bookmarkedPage);
+
+                        $(this).removeClass("on-regular-page")
+                               .addClass("on-bookmarked-page");
+                    }
                 });
 
                 bookmarkedPage = localStorage.getItem("batimahq-bookmark");
