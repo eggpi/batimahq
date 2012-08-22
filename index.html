@@ -12,8 +12,6 @@
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 
     <script type="text/javascript">
-        var PAGE_IMG_REGEXP = new RegExp("feira\\+da\\+fruta", "i");
-
         function isPage(entry) {
             var title = entry.getTitle().getText();
             return title.toLocaleLowerCase().search("página") >= 0;
@@ -99,12 +97,10 @@
                     var html = entries[i].getContent().getText();
                     var img = $(html).find("img");
 
-                    if (PAGE_IMG_REGEXP.test(img.attr("src"))) {
-                        var imgUrl = img.attr("src")
-                                        .replace("s640", "s1600"); // max resolution
+                    var imgUrl = img.attr("src")
+                                    .replace("s640", "s1600"); // max resolution
 
-                        images.unshift(imgUrl);
-                    }
+                    images.unshift(imgUrl);
                 }
             }
 
