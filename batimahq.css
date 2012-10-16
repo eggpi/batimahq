@@ -78,3 +78,7 @@ body {
     height: 130px;
     width: 43px;
 }
+
+#batimahq img {
+    background: url('bat.png') 50% 50% no-repeat, #6e6767;
+}
