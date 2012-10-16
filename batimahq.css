@@ -9,17 +9,17 @@ body {
 }
 
 #batimahq-wrapper {
-    height: 960px;
-    width: 1265px;
+    /* images are 1054x1600 px
+     * Double width to fit two pages in an open magazine,
+     * and scale down to 62% of the original size.
+     */
+    height: 992px;
+    width: 1307px;
     position: relative;
     margin: auto auto;
 }
 
 #batimahq {
-    /* images are 1054x1600 px
-     * Double width to fit two pages in an open magazine,
-     * and scale down to 60% of the original size.
-     */
     height: 100%;
     width: 100%;
     background-color: gray;
