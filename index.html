@@ -109,7 +109,7 @@
 
         function getPages() {
             var service = new google.gdata.blogger.BloggerService();
-            var feedUrl = "http://batimahq.blogspot.com.br/feeds/posts/default";
+            var feedUrl = "http://batimahq.blogspot.com.br/feeds/posts/default?max-results=999";
 
             service.getBlogPostFeed(feedUrl, onBlogPostFetch);
         }
