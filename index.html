@@ -6,10 +6,10 @@
     <meta name="author" content="Guilherme P. Gonçalves"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="batimahq.css" />
-    <link href='http://fonts.googleapis.com/css?family=Mate+SC' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Mate+SC' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="./turn.min.js"></script>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
     <script type="text/javascript">
         function isPage(entry) {
@@ -18,12 +18,29 @@
         }
 
         function buildMagazine(images, initialPage) {
-            for (var i = 0; i < images.length; i++) {
+            for (var i = 0; i < images.length - 1; i++) {
                 var page = $("<img />").attr("src", images[i]);
 
                 page.addClass(i % 2 ? "left" : "right");
                 $("#batimahq").append(page);
             }
+
+            // last page is a double page
+            // use two divs with displaced background images
+            $("#batimahq").append(
+                $("<div />").addClass("left").css({
+                    "background-image": "url(" + images[images.length-1] + ")",
+                    "background-size": "200% 100%"
+                })
+            );
+
+            $("#batimahq").append(
+                $("<div />").addClass("right").css({
+                    "background-image": "url(" + images[images.length-1] + ")",
+                    "background-size": "200% 100%",
+                    "background-position": "-100% 0%"
+                })
+            );
 
             var initialPage = 2;
             var bookmarkedPage = null;
